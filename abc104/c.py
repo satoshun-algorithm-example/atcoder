@@ -2,7 +2,7 @@ import itertools
 
 def combination(d):
     dd = [i for i in range(d)]
-    return [itertools.combinations(dd, i) for i in range(1, d + 1)]
+    return [itertools.combinations(dd, i) for i in range(d + 1)]
 
 def all_green(d, g, ps, cs):
     # tood use int max value or other constant value
