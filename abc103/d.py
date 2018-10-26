@@ -1,28 +1,22 @@
-def island(s, t, m):
-    tt = []
-    for i, j in zip(s, t):
-        tt += [range(i, j)]
-    i = 0
-    while tt:
-        i += 1
-        ma = []
-        for j in range(1, m + 1):
-            can = []
-            for iii, ttt in enumerate(tt):
-                if j in ttt:
-                    can += [iii]
-            if len(ma) < len(can):
-                ma = can
-        for h in reversed(ma):
-            del tt[h]
-    return i
+def island(a, n):
+    splits = []
+    a = sorted(a, key=lambda e: e[1])
+    for i in range(0, len(a)):
+        aa = a[i]
+        included = False
+        target = range(aa[0] + 1, aa[1])
+        for s in splits:
+            if s in target:
+                included = True
+                break
+        if included:
+            continue
+        splits += [aa[1]]
+    return len(splits)
 
 n, m = map(int, input().split())
 a = []
-b = []
 for _ in range(m):
     aa, bb = map(int, input().split())
-    a += [aa]
-    b += [bb]
-
-print(island(a, b, n))
+    a += [(aa, bb)]
+print(island(a, n))
