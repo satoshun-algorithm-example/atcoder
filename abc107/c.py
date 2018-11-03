@@ -36,12 +36,13 @@ def candles(n, k, xs):
             else:
                 _hoge(li, filled, dis, True, False)
 
-    ri = min(filter(lambda x: x >= 0, xs))
-    _hoge(xs.index(ri), [], 0, False, True)
+    if max(xs) > 0:
+        ri = min(filter(lambda x: x >= 0, xs))
+        _hoge(xs.index(ri), [], 0, False, True)
 
-    li = max(filter(lambda x: x <= 0, xs))
-    _hoge(xs.index(li), [], 0, True, True)
-
+    if min(xs) < 0:
+        li = max(filter(lambda x: x <= 0, xs))
+        _hoge(xs.index(li), [], 0, True, True)
     return mini
 
 n, k = map(int, input().split())
