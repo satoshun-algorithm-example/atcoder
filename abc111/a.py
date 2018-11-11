@@ -1,6 +1,4 @@
+m = {'1': '9', '9': '1'}
 n = int(input())
 for i in str(n):
-    if i == '1':
-        print('9', end='')
-    if i == '9':
-        print('1', end='')
+    print(m[i], end='')
