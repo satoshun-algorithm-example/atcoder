@@ -1,50 +1,35 @@
-def candles(n, k, xs):
-    mini = 1000000000000000
-
-    def _hoge(i, filled, dis, is_left, can_rotate):
-        nonlocal mini
-
-        ri = i + 1
-        li = i - 1
-
-        if i < 0 or len(xs) == i:
-            return
-        if not filled:
-            dis += abs(xs[i])
-        elif is_left:
-            dis += abs(xs[i] - xs[i + 1])
-        else:
-            dis += abs(xs[i] - xs[i - 1])
-        if i not in filled:
-            filled = list(filled)
-            filled += [i]
-            if len(filled) == k:
-                if mini > dis:
-                    mini = dis
-                return
-
-        if mini < dis:
-            return
-
-        if is_left:
-            _hoge(li, filled, dis, is_left, can_rotate)
-        else:
-            _hoge(ri, filled, dis, is_left, can_rotate)
-        if can_rotate:
-            if is_left:
-                _hoge(ri, filled, dis, False, False)
-            else:
-                _hoge(li, filled, dis, True, False)
-
-    if max(xs) > 0:
-        ri = min(filter(lambda x: x >= 0, xs))
-        _hoge(xs.index(ri), [], 0, False, True)
-
-    if min(xs) < 0:
-        li = max(filter(lambda x: x <= 0, xs))
-        _hoge(xs.index(li), [], 0, True, True)
-    return mini
-
 n, k = map(int, input().split())
 xs = list(map(int, input().split()))
-print(candles(n, k, xs))
+
+ml = len(xs) - 1
+center = ml
+for i in range(center + 1):
+    if xs[i] >= 0:
+        center = i
+        break
+
+t = 1000000000
+cur = center
+# left
+while cur > 0:
+    cur -= 1
+    if ml - cur >= k:
+        tt = 0
+        tt += abs(xs[cur])
+        tt += abs(xs[cur] - xs[cur+k-1])
+        if tt <= t:
+            t = tt
+# only left
+if center >= k:
+    tt = 0
+    tt += abs(xs[center-k] - xs[center])
+    if tt <= t:
+        t = tt
+# only right
+if ml - center >= k:
+    tt = 0
+    tt += abs(xs[center] - xs[center+k])
+    if tt <= t:
+        t = tt
+
+print(t)
