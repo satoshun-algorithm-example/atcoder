@@ -13,11 +13,16 @@ for i in range(center + 1):
 
 t = 1000000000
 cur = center
-# left
+
 while cur > 0:
     if ml - cur + 1 >= k:
-        tt = abs(xs[cur])
-        tt += abs(xs[cur] - xs[cur + k - 1])
+        # left
+        d = abs(xs[cur] - xs[cur + k - 1])
+        tt = abs(xs[cur]) + d
+        if tt <= t:
+            t = tt
+        # right
+        tt = abs(xs[cur + k - 1]) + d
         if tt <= t:
             t = tt
     cur -= 1
