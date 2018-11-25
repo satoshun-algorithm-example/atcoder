@@ -1,21 +1,19 @@
-def triangular_relationship(n, k):
-    # 1.1: (a + b) % k == 0
-
-    # 1 : a % k + b % k == k
-    # 2 : a % k + c % k == k
-    # 3 : b % k + c % k == k
-    count = 0
-    for a in range(1, n + 1):
-        for b in range(1, n + 1) :
-            for c in range(1, n + 1):
-                if a % k + b % k not in (k, 0):
-                    continue
-                if a % k + c % k not in (k, 0):
-                    continue
-                if b % k + c % k not in (k, 0):
-                    continue
-                count += 1
-    return count
-
 n, k = map(int, input().split())
-print(triangular_relationship(n, k))
+
+zero = n // k
+c = 1
+for i in range(zero-1):
+    c *= 8
+
+if k % 2 == 0:
+    half = k // 2
+    d = 0
+    for i in range(1, n+1):
+        if i % k == half:
+            d += 1
+    a = 1
+    for i in range(d-1):
+        a *= 8
+    c += a
+
+print(c)
