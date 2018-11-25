@@ -1,9 +1,8 @@
+from itertools import product
 n, k = map(int, input().split())
 
 zero = n // k
-c = 1
-for i in range(zero-1):
-    c *= 8
+c = len(list(product(range(zero), repeat=3)))
 
 if k % 2 == 0:
     half = k // 2
@@ -11,9 +10,6 @@ if k % 2 == 0:
     for i in range(1, n+1):
         if i % k == half:
             d += 1
-    a = 1
-    for i in range(d-1):
-        a *= 8
-    c += a
+    c += len(list(product(range(d), repeat=3)))
 
 print(c)
