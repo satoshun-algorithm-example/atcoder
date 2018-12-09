@@ -1,16 +1,27 @@
-l = int(input())
+L = int(input())
 
-n = 1
-ii = 0
-while True:
+paths = []
+n = 2
+v = 1
+while n <= L:
+    paths.append((v, v+1, 0))
+    paths.append((v, v+1, n//2))
+    v += 1
     n *= 2
-    ii += 1
-    if n > l:
-        n //= 2
-        break
+n //= 2
 
-for i in range(0, ii):
-    print(i, i+1, 0)
-    print(i, i+1, 2**i)
+vlast = v
+nn = n
+ll = L - n
 
+while ll > 0:
+    if ll >= n:
+        paths.append((v, vlast, nn))
+        ll -= n
+        nn += n
+    n //= 2
+    v -= 1
 
+print(vlast, len(paths))
+for e in paths:
+    print(*e)
