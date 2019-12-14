@@ -1,23 +1,22 @@
 def main():
     n = int(input())
-    values = []
-    duplicated = None
-    for _ in range(n):
-        v = int(input())
-        if v in values:
-            duplicated = v
-            continue
-        values.append(v)
+    values = [int(input()) for _ in range(n)]
+    values.sort()
+    se = set(values)
 
-    if duplicated is None:
+    if len(se) == len(values):
         print("Correct")
         return
 
-    values = set(values)
+    removed = None
+    for i in range(n):
+        if values[i] != i + 1:
+            removed = i + 1
+            break
 
-    for i in range(1, n + 1):
-        if i not in values:
-            print(str(duplicated) + " " + str(i))
+    for i in range(n - 1):
+        if values[i] == values[i + 1]:
+            print(str(values[i + 1]) + " " + str(removed))
             return
 
 
