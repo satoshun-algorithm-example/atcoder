@@ -12,12 +12,14 @@ def main():
                 if followers[y][x] == 'Y':
                     followers[x][y] = 'Y'
         if op[0] == '3':
-            pass
-            # for i, f in enumerate(followers[int(op[1]) - 1]):
-            #     if f == 'Y':
-            #         for j, nf in enumerate(followers[i]):
-            #             if nf == 'Y':
-            #                 followers[int(op[1]) - 1][j] = 'Y'
+            y = int(op[1]) - 1
+            follower = followers[y].copy()
+            for x in range(n):
+                if follower[x] == 'Y':
+                    y2 = x
+                    for x2 in range(n):
+                        if followers[y2][x2] == 'Y':
+                            followers[y][x2] = 'Y'
 
     for f in followers:
         print(''.join(f))
