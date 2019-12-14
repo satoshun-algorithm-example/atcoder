@@ -13,6 +13,8 @@ def main():
         print("Correct")
         return
 
+    values = set(values)
+
     for i in range(1, n + 1):
         if i not in values:
             print(str(duplicated) + " " + str(i))
