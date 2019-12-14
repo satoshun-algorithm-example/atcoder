@@ -4,9 +4,7 @@ def main():
     for _ in range(n - 1):
         h = list(map(int, input().split()))
         diff = n - len(h)
-        hapinnes.append(([0] * diff) + h)
-
-    a, b, c = [], [], []
+        hapinnes.append(([None] * diff) + h)
 
     def calculate(pair):
         result = 0
@@ -17,6 +15,7 @@ def main():
         return result
 
     m = 0
+    a, b, c = [], [], []
 
     def add(i):
         nonlocal m
