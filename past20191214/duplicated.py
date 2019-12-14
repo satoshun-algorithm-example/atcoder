@@ -13,7 +13,10 @@ def main():
         print("Correct")
         return
 
-
+    for i in range(1, n + 1):
+        if i not in values:
+            print(str(duplicated) + " " + str(i))
+            return
 
 
 main()
