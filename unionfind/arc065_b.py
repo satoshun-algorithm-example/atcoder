@@ -1,6 +1,6 @@
 class UnionFind:
     def __init__(self, elements):
-        self.elements = {e: -1 for e in elements}
+        self.elements = elements
 
     def same(self, a, b):
         return self.find(a) == self.find(b)
@@ -25,22 +25,21 @@ class UnionFind:
 
 
 N, K, L = map(int, input().split())
-road_union = UnionFind(i for i in range(1, N + 1))
+road_union = UnionFind([-1 for i in range(N)])
 for _ in range(K):
     a, b = map(int, input().split())
-    road_union.unite(a, b)
+    road_union.unite(a - 1, b - 1)
 
-train_union = UnionFind(i for i in range(1, N + 1))
+train_union = UnionFind([-1 for i in range(N)])
 for _ in range(L):
     a, b = map(int, input().split())
-    train_union.unite(a, b)
+    train_union.unite(a - 1, b - 1)
 
 ma = dict()
 for i in range(N):
-    p = (road_union.find(i + 1), train_union.find(i + 1))
-    ma.setdefault(p, 0)
-    ma[p] += 1
+    p = (road_union.find(i), train_union.find(i))
+    ma[p] = ma.get(p, 0) + 1
 
 for i in range(N):
-    p = (road_union.find(i + 1), train_union.find(i + 1))
+    p = (road_union.find(i), train_union.find(i))
     print(ma[p], end=' ')
