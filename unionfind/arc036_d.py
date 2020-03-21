@@ -10,7 +10,7 @@ class UnionFind:
         if pa == pb:
             return
 
-        self.parents[b] = a
+        self.parents[pb] = pa
 
     def same(self, a, b):
         return self.find(a) == self.find(b)
@@ -41,7 +41,7 @@ for _ in range(Q):
             find.unite(X * 2, Y * 2 + 1)
             find.unite(X * 2 + 1, Y * 2)
     else:
-        if find.same(X, Y):
+        if find.same(X * 2, Y * 2):
             print('YES')
         else:
             print('NO')
