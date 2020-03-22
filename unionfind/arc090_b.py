@@ -9,7 +9,7 @@ class Edge:
 N, M = map(int, input().split())
 visited = [False for _ in range(N + 1)]
 edges = dict()
-dist = dict()
+dist = [0 for _ in range(N + 1)]
 
 for _ in range(M):
     L, R, D = map(int, input().split())
