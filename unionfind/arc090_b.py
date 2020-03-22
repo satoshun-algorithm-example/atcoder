@@ -16,11 +16,12 @@ for _ in range(M):
 
     edges[L] = edges.get(L, [])
     edges[L].append(Edge(R, D))
+
     edges[R] = edges.get(R, [])
     edges[R].append(Edge(L, -D))
 
 
-def bfs(v, d) -> bool:
+def bfs(v, d):
     if visited[v]:
         return dist[v] == d
 
