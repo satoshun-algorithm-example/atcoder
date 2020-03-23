@@ -17,9 +17,10 @@ def search(left, right, top, bottom):
     global sum_count
 
     k = 0
-    for i in range(top, bottom):
-        k += (cum[i + 1][right] - cum[i + 1][left])
+    for i in range(top + 1, bottom + 1):
+        k += (cum[i][right] - cum[i][left])
 
+    print(k, left, right, top, bottom)
     if k <= K:
         return
 
@@ -30,14 +31,14 @@ def search(left, right, top, bottom):
     point = (-1, -1)
     diff = good
 
-    for y in range(top + 1, bottom):
-        candidate = sum(cum[i + 1][right] - cum[i + 1][left] for i in range(y))
+    for y in range(top + 1, bottom + 1):
+        candidate = sum(cum[i][right] - cum[i][left] for i in range(top + 1, y + 1))
         if abs(good - candidate) < diff:
             diff = abs(good - candidate)
             point = (-1, y)
 
-    for x in range(left + 1, right):
-        candidate = sum(cum[i + 1][x] - cum[i + 1][left] for i in range(top, bottom))
+    for x in range(left + 1, right + 1):
+        candidate = sum(cum[i][x] - cum[i][left] for i in range(top + 1, bottom + 1))
         if abs(good - candidate) < diff:
             diff = abs(good - candidate)
             point = (x, -1)
