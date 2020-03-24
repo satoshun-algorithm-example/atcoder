@@ -10,6 +10,14 @@ for _ in range(M):
         exit(0)
     c[S - 1] = C
 
+if N == 1 and c[0] == 0:
+    print(0)
+    exit(0)
+
+if N == 1 and c[0] == -1:
+    print(0)
+    exit(0)
+
 if c[0] == 0:
     print(-1)
     exit(0)
