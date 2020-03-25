@@ -30,23 +30,25 @@ class UnionFind:
 N, M, K = map(int, input().split())
 union = UnionFind([-1 for i in range(N)])
 
-m = [0 for _ in range(N)]
+deg = [0 for _ in range(N)]
+to = [[] for _ in range(N)]
 
 for _ in range(M):
     A, B = map(int, input().split())
-    m[A - 1] += 1
-    m[B - 1] += 1
+    deg[A - 1] += 1
+    deg[B - 1] += 1
     union.unite(A - 1, B - 1)
-
-for i in range(N):
-    m[i] = union.size(i) - 1 - m[i]
 
 for _ in range(K):
     A, B = map(int, input().split())
-    m[A - 1] -= union.same(A - 1, B - 1)
-    m[B - 1] -= union.same(A - 1, B - 1)
+    to[A - 1].append(B - 1)
+    to[B - 1].append(A - 1)
 
-for i, ans in enumerate(m):
+for i in range(N):
+    ans = union.size(i) - 1 - deg[i]
+    for u in to[i]:
+        ans -= union.same(i, u)
+
     if i == N - 1:
         end = '\n'
     else:
