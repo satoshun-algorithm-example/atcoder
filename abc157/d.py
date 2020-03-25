@@ -46,5 +46,9 @@ for _ in range(K):
     m[A - 1] -= union.same(A - 1, B - 1)
     m[B - 1] -= union.same(A - 1, B - 1)
 
-for j, ans in enumerate(m):
-    print(ans, end=' ')
+for i, ans in enumerate(m):
+    if i == N - 1:
+        end = '\n'
+    else:
+        end = ' '
+    print(ans, end=end)
