@@ -21,10 +21,13 @@ for _ in range(Q):
         Q1, Q2 = int(Q1) - 1, int(Q2)
         ans = 0
         for i in range(26):
-            if not acc[i]:
+            target = acc[i]
+            if not target:
                 continue
-            it = bisect.bisect_left(acc[i], Q1)
-            if it != acc[i][-1] and it < Q2:
+            it = bisect.bisect_left(target, Q1)
+            if len(target) <= it:
+                continue
+            if target[it] < Q2:
                 ans += 1
 
         print(ans)
