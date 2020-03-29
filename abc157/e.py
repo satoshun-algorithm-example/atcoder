@@ -7,7 +7,7 @@ Q = int(input())
 
 acc = [[] for _ in range(26)]
 for i in range(N):
-    bisect.insort_left(acc[ord(S[i]) - ord('a')], i)
+    acc[ord(S[i]) - ord('a')].append(i)
 
 for _ in range(Q):
     TYPE, Q1, Q2 = input().split()
