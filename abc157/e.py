@@ -13,7 +13,8 @@ for _ in range(Q):
     TYPE, Q1, Q2 = input().split()
     if TYPE == '1':
         Q1 = int(Q1) - 1
-        del acc[ord(S[Q1]) - ord('a')][bisect.bisect_left(acc[ord(S[Q1]) - ord('a')], Q1)]
+        target = acc[ord(S[Q1]) - ord('a')]
+        del target[bisect.bisect_left(target, Q1)]
         S[Q1] = Q2
         bisect.insort_left(acc[ord(S[Q1]) - ord('a')], Q1)
 
@@ -24,6 +25,7 @@ for _ in range(Q):
             target = acc[i]
             if not target:
                 continue
+
             it = bisect.bisect_left(target, Q1)
             if len(target) <= it:
                 continue
