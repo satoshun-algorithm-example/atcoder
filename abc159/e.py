@@ -14,7 +14,7 @@ for h in range(1 << (H - 1)):
             g += 1
 
     g += 1
-    c = [[0 for _ in range(W)] for _ in range(g)]
+    c = [[0] * W for _ in range(g)]
     for i in range(H):
         for j in range(W):
             c[ids[i]][j] = c[ids[i]][j] + (s[i][j] == '1')
@@ -32,6 +32,7 @@ for h in range(1 << (H - 1)):
                 return False
 
         return True
+
 
     if num >= ans:
         continue
