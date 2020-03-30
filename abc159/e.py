@@ -24,7 +24,7 @@ for h in range(1 << (H - 1)):
         for j in range(W):
             c[ids[i]][j] = c[ids[i]][j] + (s[i][j] == '1')
 
-    now = [0 for _ in range(g)]
+    now = [0] * g
 
 
     def add(j):
@@ -43,7 +43,7 @@ for h in range(1 << (H - 1)):
             num += 1
             if num >= ans:
                 continue
-            now = [0 for _ in range(g)]
+            now = [0] * g
             if not add(j):
                 num = sys.maxsize
                 break
