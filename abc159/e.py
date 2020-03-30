@@ -33,10 +33,14 @@ for h in range(1 << (H - 1)):
 
         return True
 
+    if num >= ans:
+        continue
 
     for j in range(W):
         if not add(j):
             num += 1
+            if num >= ans:
+                continue
             now = [0 for _ in range(g)]
             if not add(j):
                 num = sys.maxsize
