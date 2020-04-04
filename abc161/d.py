@@ -1,4 +1,16 @@
 # https://atcoder.jp/contests/abc161/tasks/abc161_d
+def check(k):
+    prev = k % 10
+    k //= 10
+    while k:
+        cur = k % 10
+        if abs(cur - prev) > 1:
+            return False
+        k //= 10
+        prev = cur
+    return True
+
+
 K = int(input())
 
 count = 0
@@ -6,15 +18,6 @@ ans = 0
 
 while count != K:
     ans += 1
-
-    # check lunlun
-    a = list(map(int, str(ans)))
-    is_lunlun = True
-    for i in range(len(a) - 1):
-        if abs(a[i] - a[i + 1]) > 1:
-            is_lunlun = False
-            break
-
-    count += is_lunlun
+    count += check(ans)
 
 print(ans)
