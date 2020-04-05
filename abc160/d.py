@@ -9,23 +9,37 @@ for n in range(N - 1):
     a.add((n, n + 1))
 a.add((X, Y))
 total = a.copy()
+
+
+def add(b, p1, p2):
+    if p1 == p2:
+        return
+    if p1 > p2:
+        p1, p2 = p2, p1
+
+    if (p1, p2) in total:
+        return
+
+    b.add((p1, p2))
+    total.add((p1, p2))
+
+
 print(len(a))
 
 for i in range(1, N - 1):
     b = set()
     for n in a:
-        # last
-        if n[1] == N - 1:
-            continue
+        if n[1] != 0:
+            add(b, n[0], n[1] - 1)
+
+        if n[1] != N - 1:
+            add(b, n[0], n[1] + 1)
 
         if n[1] == X:
-            if (n[0], Y) not in total:
-                total.add((n[0], Y))
-                b.add((n[0], Y))
+            add(b, n[0], Y)
 
-        if (n[0], n[1] + 1) not in total:
-            total.add((n[0], n[1] + 1))
-            b.add((n[0], n[1] + 1))
+        if n[1] == Y:
+            add(b, n[0], X)
 
     a = b
     print(len(a))
