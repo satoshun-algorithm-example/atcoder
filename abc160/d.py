@@ -14,14 +14,13 @@ total = a.copy()
 def add(b, p1, p2):
     if p1 == p2:
         return
-    if p1 > p2:
-        p1, p2 = p2, p1
 
     if (p1, p2) in total:
         return
 
     b.add((p1, p2))
     total.add((p1, p2))
+    total.add((p2, p1))
 
 
 print(len(a))
