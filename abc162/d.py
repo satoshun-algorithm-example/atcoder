@@ -17,14 +17,14 @@ gr = [0 for _ in range(N)]
 colors(gr, 'G', 'R')
 
 gb = [0 for _ in range(N)]
-colors(rg, 'G', 'B')
+colors(gb, 'G', 'B')
 bg = [0 for _ in range(N)]
-colors(gr, 'B', 'G')
+colors(bg, 'B', 'G')
 
 rb = [0 for _ in range(N)]
-colors(rg, 'R', 'B')
+colors(rb, 'R', 'B')
 br = [0 for _ in range(N)]
-colors(gr, 'B', 'R')
+colors(br, 'B', 'R')
 
 ans = 0
 for i in range(N):
