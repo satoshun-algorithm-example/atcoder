@@ -1,44 +1,35 @@
 # https://atcoder.jp/contests/abc160/tasks/abc160_d
 N, X, Y = map(int, input().split())
-X = X - 1
-Y = Y - 1
 
-# check distance 1
-a = set()
-for n in range(N - 1):
-    a.add((n, n + 1))
-a.add((X, Y))
-total = a.copy()
+visited = set()
 
+# special case: first advance
+for i in range(N - 1):
+    visited.add((i, i + 1))
+visited.add((X - 1, Y - 1))
 
-def add(b, p1, p2):
-    if p1 == p2:
-        return
+print(len(visited))
 
-    if (p1, p2) in total:
-        return
+for _ in range(N - 2):
+    total = 0
 
-    b.add((p1, p2))
-    total.add((p1, p2))
-    total.add((p2, p1))
+    for point in visited.copy():
+        x, y = point
 
+        if (x - 1, y) not in visited and x - 1 >= 0:
+            visited.add((x - 1, y))
+            total += 1
 
-print(len(a))
+        if (x + 1, y) not in visited and x + 1 != y:
+            visited.add((x + 1, y))
+            total += 1
 
-for i in range(1, N - 1):
-    b = set()
-    for n in a:
-        if n[1] != 0:
-            add(b, n[0], n[1] - 1)
+        if (x, y - 1) not in visited and x != y - 1:
+            visited.add((x, y - 1))
+            total += 1
 
-        if n[1] != N - 1:
-            add(b, n[0], n[1] + 1)
+        if (x, y + 1) not in visited and y + 1 < N:
+            visited.add((x, y + 1))
+            total += 1
 
-        if n[1] == X:
-            add(b, n[0], Y)
-
-        if n[1] == Y:
-            add(b, n[0], X)
-
-    a = b
-    print(len(a))
+    print(total)
