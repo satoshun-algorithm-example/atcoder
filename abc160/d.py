@@ -10,26 +10,28 @@ visited.add((X - 1, Y - 1))
 
 print(len(visited))
 
+next_items = visited.copy()
 for _ in range(N - 2):
-    total = 0
+    candidates = []
 
-    for point in visited.copy():
+    for point in next_items:
         x, y = point
 
         if (x - 1, y) not in visited and x - 1 >= 0:
             visited.add((x - 1, y))
-            total += 1
+            candidates.append((x - 1, y))
 
         if (x + 1, y) not in visited and x + 1 != y:
             visited.add((x + 1, y))
-            total += 1
+            candidates.append((x + 1, y))
 
         if (x, y - 1) not in visited and x != y - 1:
             visited.add((x, y - 1))
-            total += 1
+            candidates.append((x, y - 1))
 
         if (x, y + 1) not in visited and y + 1 < N:
             visited.add((x, y + 1))
-            total += 1
+            candidates.append((x, y + 1))
 
-    print(total)
+    print(len(candidates))
+    next_items = candidates
