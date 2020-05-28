@@ -16,7 +16,7 @@ P = list(map(int, input().split()))
 Q = list(map(int, input().split()))
 R = list(map(int, input().split()))
 
-red_and_green_apples(X, Y, A, B, C, P, Q, R)
+print(red_and_green_apples(X, Y, A, B, C, P, Q, R))
 
 # red_and_green_apples(
 #     1, 2, 2, 2, 1,
