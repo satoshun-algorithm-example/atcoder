@@ -22,11 +22,10 @@ while True:
     for p in pos:
         for n in AB[p]:
             if a[n] == -1:
-                a[n] = current
+                a[n] = p
             next_pos.append(n)
 
     pos = next_pos
-    current += 1
 
     if not next_pos or -1 not in a[2:]:
         break
