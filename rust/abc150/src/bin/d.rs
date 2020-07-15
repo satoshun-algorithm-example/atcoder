@@ -65,7 +65,7 @@ fn main() {
                 break;
             }
 
-            if (i - half % a[j]) != 0 {
+            if ((i - half) % a[j]) != 0 {
                 ok = false;
                 break;
             }
