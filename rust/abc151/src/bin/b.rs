@@ -49,9 +49,20 @@ macro_rules! read_value {
 
 fn main() {
     input! {
-        n: usize,
-        k: usize,
-        m: usize,
-        a: [n-1;usize],
+        n: i32,
+        k: i32,
+        m: i32,
+        a: [i32;n-1],
+    }
+
+    let sum: i32 = a.iter().sum();
+    let result = (n * m) - sum;
+
+    if result <= 0 {
+        println!("{}", 0);
+    } else if result <= k {
+        println!("{}", result);
+    } else {
+        println!("{}", -1);
     }
 }
