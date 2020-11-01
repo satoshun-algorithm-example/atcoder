@@ -1,13 +1,14 @@
-import heapq
-
 N = int(input())
 
-ans = []
+ans = set()
 
-for i in range(1, int(N ** 0.5) + 1):
+i = 1
+while i * i <= N:
     if N % i == 0:
-        heapq.heappush(ans, i)
-        heapq.heappush(ans, N // i)
+        ans.add(i)
+        ans.add(N // i)
 
-for i in ans:
+    i += 1
+
+for i in sorted(list(ans)):
     print(i)
