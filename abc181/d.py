@@ -1,17 +1,19 @@
 S = input()
 
+if len(S) <= 2:
+    if int(S) % 8 == 0 or int(S[::-1]) % 8 == 0:
+        print("Yes")
+    else:
+        print("No")
+
+    exit()
+
 d = [0] * 10
 for s in S:
     d[int(s)] += 1
 
-for r in range(8, 1000, 8):
+for r in range(112, 1000, 8):
     ok = True
-
-    if len(S) == 2 and r < 10:
-        continue
-
-    if len(S) == 3 and r < 100:
-        continue
 
     count = [0] * 10
     for s in str(r):
