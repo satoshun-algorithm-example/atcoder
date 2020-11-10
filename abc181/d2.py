@@ -18,7 +18,7 @@ s2 = [0] * 10
 for s in S:
     s2[int(s)] += 1
 
-for target in range(116, 1000, 8):
+for target in range(112, 1000, 8):
     s1 = [0] * 10
     for s in str(target):
         s1[int(s)] += 1
